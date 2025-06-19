@@ -5,6 +5,8 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <SetupThreadGroup guiclass="SetupThreadGroupGui" testclass="SetupThreadGroup" testname="setUp Thread Group">
@@ -24,8 +26,8 @@
         </TransactionController>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/-270">
-            <stringProp name="HTTPSampler.domain">demowebshop.tricentis.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
+            <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+            <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -90,7 +92,7 @@
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell Assertion">
+            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="VERIFY LAUNCH">
               <stringProp name="BeanShellAssertion.query">import org.apache.jmeter.util.JMeterUtils;
 // Get the current request URL
 String url = prev.getURL().toString();
@@ -111,7 +113,7 @@ if (!url.equals(&quot;https://demowebshop.tricentis.com/&quot;)) {
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-272">
             <stringProp name="HTTPSampler.domain">ssl.google-analytics.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
+            <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/__utm.gif</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -144,7 +146,7 @@ if (!url.equals(&quot;https://demowebshop.tricentis.com/&quot;)) {
                 <elementProp name="utmhn" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">utmhn</stringProp>
-                  <stringProp name="Argument.value">demowebshop.tricentis.com</stringProp>
+                  <stringProp name="Argument.value">${URL}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
@@ -261,7 +263,7 @@ if (!url.equals(&quot;https://demowebshop.tricentis.com/&quot;)) {
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="Sec-Fetch-Mode" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
@@ -273,7 +275,7 @@ if (!url.equals(&quot;https://demowebshop.tricentis.com/&quot;)) {
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">https://demowebshop.tricentis.com/</stringProp>
+                  <stringProp name="Header.value">https://${URL}/</stringProp>
                 </elementProp>
                 <elementProp name="Sec-Fetch-Site" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
@@ -317,7 +319,7 @@ if (!url.equals(&quot;https://demowebshop.tricentis.com/&quot;)) {
           </hashTree>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Register_User" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Register_User">
         <stringProp name="ThreadGroup.num_threads">${users}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup}</stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -334,8 +336,8 @@ if (!url.equals(&quot;https://demowebshop.tricentis.com/&quot;)) {
         </TransactionController>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/register-274">
-            <stringProp name="HTTPSampler.domain">demowebshop.tricentis.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
+            <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+            <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/register</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -347,7 +349,7 @@ if (!url.equals(&quot;https://demowebshop.tricentis.com/&quot;)) {
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="Sec-Fetch-Mode" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
@@ -355,7 +357,7 @@ if (!url.equals(&quot;https://demowebshop.tricentis.com/&quot;)) {
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">https://demowebshop.tricentis.com/</stringProp>
+                  <stringProp name="Header.value">https://${URL}/</stringProp>
                 </elementProp>
                 <elementProp name="Sec-Fetch-Site" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
@@ -420,7 +422,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-276">
             <stringProp name="HTTPSampler.domain">ssl.google-analytics.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
+            <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/__utm.gif</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -453,7 +455,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 <elementProp name="utmhn" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">utmhn</stringProp>
-                  <stringProp name="Argument.value">demowebshop.tricentis.com</stringProp>
+                  <stringProp name="Argument.value">${URL}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
@@ -573,7 +575,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="Sec-Fetch-Mode" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
@@ -585,7 +587,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">https://demowebshop.tricentis.com/</stringProp>
+                  <stringProp name="Header.value">https://${URL}/</stringProp>
                 </elementProp>
                 <elementProp name="Sec-Fetch-Site" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
@@ -635,8 +637,8 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/register-278">
             <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-            <stringProp name="HTTPSampler.domain">demowebshop.tricentis.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
+            <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+            <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
             <stringProp name="HTTPSampler.path">/register</stringProp>
@@ -706,7 +708,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="Sec-Fetch-Mode" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
@@ -714,7 +716,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">https://demowebshop.tricentis.com/register</stringProp>
+                  <stringProp name="Header.value">https://${URL}/register</stringProp>
                 </elementProp>
                 <elementProp name="Sec-Fetch-Site" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
@@ -726,7 +728,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 </elementProp>
                 <elementProp name="Origin" elementType="Header">
                   <stringProp name="Header.name">Origin</stringProp>
-                  <stringProp name="Header.value">https://demowebshop.tricentis.com</stringProp>
+                  <stringProp name="Header.value">https://${URL}</stringProp>
                 </elementProp>
                 <elementProp name="Sec-Fetch-User" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-User</stringProp>
@@ -775,10 +777,26 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
               </collectionProp>
             </HeaderManager>
             <hashTree/>
+            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="VERIFY REGISTER">
+              <stringProp name="BeanShellAssertion.query">import org.apache.jmeter.util.JMeterUtils;
+String url = prev.getURL().toString();
+log.info(&quot;Current Request URL: &quot; + url);
+if (!url.equals(&quot;https://demowebshop.tricentis.com/register&quot;)) {
+    log.error(&quot;URL assertion failed. Expected: https://demowebshop.tricentis.com/register but got: &quot; + url);
+}
+else{
+    log.info(&quot;URL assertion passed. Landing page is correct.&quot;);
+}
+</stringProp>
+              <stringProp name="BeanShellAssertion.filename"></stringProp>
+              <stringProp name="BeanShellAssertion.parameters"></stringProp>
+              <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+            </BeanShellAssertion>
+            <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/registerresult/1-280">
-            <stringProp name="HTTPSampler.domain">demowebshop.tricentis.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
+            <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+            <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/registerresult/1</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -798,7 +816,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">https://demowebshop.tricentis.com/register</stringProp>
+                  <stringProp name="Header.value">https://${URL}/register</stringProp>
                 </elementProp>
                 <elementProp name="Sec-Fetch-Site" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
@@ -854,7 +872,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-281">
             <stringProp name="HTTPSampler.domain">ssl.google-analytics.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
+            <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/__utm.gif</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -887,7 +905,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 <elementProp name="utmhn" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">utmhn</stringProp>
-                  <stringProp name="Argument.value">demowebshop.tricentis.com</stringProp>
+                  <stringProp name="Argument.value">${URL}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
@@ -971,7 +989,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 <elementProp name="utmht" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">utmht</stringProp>
-                  <stringProp name="Argument.value">1750233187443</stringProp>
+                  <stringProp name="Argument.value">1750233187${port}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
@@ -1019,7 +1037,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">https://demowebshop.tricentis.com/</stringProp>
+                  <stringProp name="Header.value">https://${URL}/</stringProp>
                 </elementProp>
                 <elementProp name="Sec-Fetch-Site" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
@@ -1063,8 +1081,8 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/logout-283">
             <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-            <stringProp name="HTTPSampler.domain">demowebshop.tricentis.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
+            <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+            <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/logout</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -1084,7 +1102,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">https://demowebshop.tricentis.com/registerresult/1</stringProp>
+                  <stringProp name="Header.value">https://${URL}/registerresult/1</stringProp>
                 </elementProp>
                 <elementProp name="Sec-Fetch-Site" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
@@ -1135,8 +1153,8 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/-284">
-            <stringProp name="HTTPSampler.domain">demowebshop.tricentis.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
+            <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+            <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
             <stringProp name="HTTPSampler.path">/</stringProp>
@@ -1157,7 +1175,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">https://demowebshop.tricentis.com/registerresult/1</stringProp>
+                  <stringProp name="Header.value">https://${URL}/registerresult/1</stringProp>
                 </elementProp>
                 <elementProp name="Sec-Fetch-Site" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
@@ -1209,7 +1227,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-285">
             <stringProp name="HTTPSampler.domain">ssl.google-analytics.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
+            <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/__utm.gif</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -1242,7 +1260,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 <elementProp name="utmhn" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">utmhn</stringProp>
-                  <stringProp name="Argument.value">demowebshop.tricentis.com</stringProp>
+                  <stringProp name="Argument.value">${URL}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
@@ -1326,7 +1344,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 <elementProp name="utmht" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">utmht</stringProp>
-                  <stringProp name="Argument.value">1750233194443</stringProp>
+                  <stringProp name="Argument.value">1750233194${port}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
@@ -1371,7 +1389,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">https://demowebshop.tricentis.com/</stringProp>
+                  <stringProp name="Header.value">https://${URL}/</stringProp>
                 </elementProp>
                 <elementProp name="Sec-Fetch-Site" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
@@ -1432,8 +1450,8 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
         </TransactionController>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/login-286">
-            <stringProp name="HTTPSampler.domain">demowebshop.tricentis.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
+            <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+            <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/login</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -1453,7 +1471,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">https://demowebshop.tricentis.com/</stringProp>
+                  <stringProp name="Header.value">https://${URL}/</stringProp>
                 </elementProp>
                 <elementProp name="Sec-Fetch-Site" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
@@ -1505,7 +1523,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-288">
             <stringProp name="HTTPSampler.domain">ssl.google-analytics.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
+            <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/__utm.gif</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -1538,7 +1556,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 <elementProp name="utmhn" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">utmhn</stringProp>
-                  <stringProp name="Argument.value">demowebshop.tricentis.com</stringProp>
+                  <stringProp name="Argument.value">${URL}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
@@ -1670,7 +1688,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">https://demowebshop.tricentis.com/</stringProp>
+                  <stringProp name="Header.value">https://${URL}/</stringProp>
                 </elementProp>
                 <elementProp name="Sec-Fetch-Site" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
@@ -1720,8 +1738,8 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/login-290">
             <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-            <stringProp name="HTTPSampler.domain">demowebshop.tricentis.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
+            <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+            <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
             <stringProp name="HTTPSampler.path">/login</stringProp>
@@ -1734,14 +1752,14 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 <elementProp name="Email" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
                   <stringProp name="Argument.name">Email</stringProp>
-                  <stringProp name="Argument.value">${email}</stringProp>
+                  <stringProp name="Argument.value">${mail}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
                 <elementProp name="Password" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">Password</stringProp>
-                  <stringProp name="Argument.value">${pw}</stringProp>
+                  <stringProp name="Argument.value">${pass}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
@@ -1771,7 +1789,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">https://demowebshop.tricentis.com/login</stringProp>
+                  <stringProp name="Header.value">https://${URL}/login</stringProp>
                 </elementProp>
                 <elementProp name="Sec-Fetch-Site" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
@@ -1783,7 +1801,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 </elementProp>
                 <elementProp name="Origin" elementType="Header">
                   <stringProp name="Header.name">Origin</stringProp>
-                  <stringProp name="Header.value">https://demowebshop.tricentis.com</stringProp>
+                  <stringProp name="Header.value">https://${URL}</stringProp>
                 </elementProp>
                 <elementProp name="Sec-Fetch-User" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-User</stringProp>
@@ -1832,10 +1850,24 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
               </collectionProp>
             </HeaderManager>
             <hashTree/>
+            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="VERIFY LOGIN">
+              <stringProp name="BeanShellAssertion.query">String response = prev.getResponseDataAsString();
+if (response.contains(&quot;Welcome to the new Tricentis store!&quot;)) {
+    log.info(&quot;Welcome message found.&quot;);
+} else {
+    log.error(&quot;Welcome message NOT found.&quot;);
+    Failure = true;
+    FailureMessage = &quot;Expected text not found: Welcome to the new Tricentis store!&quot;;
+}</stringProp>
+              <stringProp name="BeanShellAssertion.filename"></stringProp>
+              <stringProp name="BeanShellAssertion.parameters"></stringProp>
+              <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+            </BeanShellAssertion>
+            <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/-291">
-            <stringProp name="HTTPSampler.domain">demowebshop.tricentis.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/-291" enabled="true">
+            <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+            <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
             <stringProp name="HTTPSampler.path">/</stringProp>
@@ -1856,7 +1888,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">https://demowebshop.tricentis.com/login</stringProp>
+                  <stringProp name="Header.value">https://${URL}/login</stringProp>
                 </elementProp>
                 <elementProp name="Sec-Fetch-Site" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
@@ -1910,9 +1942,9 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-294">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-294" enabled="true">
             <stringProp name="HTTPSampler.domain">ssl.google-analytics.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
+            <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/__utm.gif</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -1945,7 +1977,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 <elementProp name="utmhn" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">utmhn</stringProp>
-                  <stringProp name="Argument.value">demowebshop.tricentis.com</stringProp>
+                  <stringProp name="Argument.value">${URL}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
@@ -2074,7 +2106,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">https://demowebshop.tricentis.com/</stringProp>
+                  <stringProp name="Header.value">https://${URL}/</stringProp>
                 </elementProp>
                 <elementProp name="Sec-Fetch-Site" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
@@ -2117,13 +2149,17 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
             <hashTree/>
           </hashTree>
         </hashTree>
-        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler">
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="false">
           <stringProp name="scriptLanguage">groovy</stringProp>
           <stringProp name="parameters"></stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="cacheKey">true</stringProp>
           <stringProp name="script">vars.put(&quot;searchSuccess&quot;, &quot;false&quot;);</stringProp>
         </JSR223Sampler>
+        <hashTree/>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="BeanShell Sampler">
+          <stringProp name="BeanShellSampler.query">vars.put(&quot;searchSuccess&quot;, &quot;false&quot;);</stringProp>
+        </BeanShellSampler>
         <hashTree/>
         <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="While Controller">
           <stringProp name="WhileController.condition">${__javaScript(&quot;${searchSuccess}&quot; != &quot;true&quot;)}</stringProp>
@@ -2134,9 +2170,9 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/search-296" enabled="true">
-              <stringProp name="HTTPSampler.domain">demowebshop.tricentis.com</stringProp>
-              <stringProp name="HTTPSampler.port">443</stringProp>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/search-296">
+              <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+              <stringProp name="HTTPSampler.port">${port}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.path">/search</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -2164,7 +2200,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                   </elementProp>
                   <elementProp name="Referer" elementType="Header">
                     <stringProp name="Header.name">Referer</stringProp>
-                    <stringProp name="Header.value">https://demowebshop.tricentis.com/</stringProp>
+                    <stringProp name="Header.value">https://${URL}/</stringProp>
                   </elementProp>
                   <elementProp name="Sec-Fetch-Site" elementType="Header">
                     <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
@@ -2213,7 +2249,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
                 </collectionProp>
               </HeaderManager>
               <hashTree/>
-              <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+              <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor">
                 <boolProp name="resetInterpreter">false</boolProp>
                 <stringProp name="parameters"></stringProp>
                 <stringProp name="filename"></stringProp>
@@ -2231,9 +2267,9 @@ vars.put(&quot;randomProductKeyword&quot;, keywords[index]);</stringProp>
               </BeanShellPreProcessor>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-298" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-298">
               <stringProp name="HTTPSampler.domain">ssl.google-analytics.com</stringProp>
-              <stringProp name="HTTPSampler.port">443</stringProp>
+              <stringProp name="HTTPSampler.port">${port}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.path">/__utm.gif</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -2266,7 +2302,7 @@ vars.put(&quot;randomProductKeyword&quot;, keywords[index]);</stringProp>
                   <elementProp name="utmhn" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
                     <stringProp name="Argument.name">utmhn</stringProp>
-                    <stringProp name="Argument.value">demowebshop.tricentis.com</stringProp>
+                    <stringProp name="Argument.value">${URL}</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   </elementProp>
@@ -2395,7 +2431,7 @@ vars.put(&quot;randomProductKeyword&quot;, keywords[index]);</stringProp>
                   </elementProp>
                   <elementProp name="Referer" elementType="Header">
                     <stringProp name="Header.name">Referer</stringProp>
-                    <stringProp name="Header.value">https://demowebshop.tricentis.com/</stringProp>
+                    <stringProp name="Header.value">https://${URL}/</stringProp>
                   </elementProp>
                   <elementProp name="Sec-Fetch-Site" elementType="Header">
                     <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
@@ -2438,8 +2474,8 @@ vars.put(&quot;randomProductKeyword&quot;, keywords[index]);</stringProp>
               <hashTree/>
             </hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/catalog/searchtermautocomplete-297">
-              <stringProp name="HTTPSampler.domain">demowebshop.tricentis.com</stringProp>
-              <stringProp name="HTTPSampler.port">443</stringProp>
+              <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+              <stringProp name="HTTPSampler.port">${port}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
               <stringProp name="HTTPSampler.path">/catalog/searchtermautocomplete</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -2459,7 +2495,7 @@ vars.put(&quot;randomProductKeyword&quot;, keywords[index]);</stringProp>
               </elementProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="Sec-Fetch-Mode" elementType="Header">
                     <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
@@ -2467,7 +2503,7 @@ vars.put(&quot;randomProductKeyword&quot;, keywords[index]);</stringProp>
                   </elementProp>
                   <elementProp name="Referer" elementType="Header">
                     <stringProp name="Header.name">Referer</stringProp>
-                    <stringProp name="Header.value">https://demowebshop.tricentis.com/</stringProp>
+                    <stringProp name="Header.value">https://${URL}/</stringProp>
                   </elementProp>
                   <elementProp name="Sec-Fetch-Site" elementType="Header">
                     <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
@@ -2512,10 +2548,23 @@ vars.put(&quot;randomProductKeyword&quot;, keywords[index]);</stringProp>
                 </collectionProp>
               </HeaderManager>
               <hashTree/>
-              <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell Assertion">
-                <stringProp name="BeanShellAssertion.query">if (&quot;false&quot;.equals(vars.get(&quot;searchSuccess&quot;))) {
+              <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="VERIFY SEARCH">
+                <stringProp name="BeanShellAssertion.query">//if (&quot;false&quot;.equals(vars.get(&quot;searchSuccess&quot;))) {
+//    Failure = true;
+//    FailureMessage = &quot;Search term &apos;&quot; + vars.get(&quot;randomProductKeyword&quot;) + &quot;&apos; not found.&quot;;
+//}
+
+try {
+    if (&quot;false&quot;.equals(vars.get(&quot;searchSuccess&quot;))) {
+        String keyword = vars.get(&quot;randomProductKeyword&quot;);
+        Failure = true;
+        FailureMessage = &quot;Search term &apos;&quot; + keyword + &quot;&apos; not found.&quot;;
+        log.error(FailureMessage);
+    }
+} catch (Exception e) {
     Failure = true;
-    FailureMessage = &quot;Search term &apos;&quot; + vars.get(&quot;randomProductKeyword&quot;) + &quot;&apos; not found.&quot;;
+    FailureMessage = &quot;Error while checking search result: &quot; + e.getMessage();
+    log.error(FailureMessage, e);
 }
 </stringProp>
                 <stringProp name="BeanShellAssertion.filename"></stringProp>
@@ -2543,355 +2592,45 @@ for (int i = 0; i &lt; jsonArray.length(); i++) {
         break;
     }
 }
-
 if (found) {
     vars.put(&quot;searchSuccess&quot;, &quot;true&quot;);
 }else {
     vars.put(&quot;searchSuccess&quot;, &quot;false&quot;);
     Failure = true;
     FailureMessage = &quot;Search term &apos;&quot; + searchTerm + &quot;&apos; not found.&quot;;
+    log.error(FailureMessage);
 }
-
 </stringProp>
             </BeanShellPostProcessor>
             <hashTree/>
           </hashTree>
         </hashTree>
-        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="false">
-          <stringProp name="LoopController.loops">3</stringProp>
-        </LoopController>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller">
+          <stringProp name="IfController.condition">${__javaScript(&quot;${searchSuccess}&quot; == &quot;true&quot;)}</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+          <boolProp name="IfController.useExpression">true</boolProp>
+        </IfController>
         <hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Search">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Add_To_Cart">
             <boolProp name="TransactionController.parent">true</boolProp>
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/search-296" enabled="true">
-              <stringProp name="HTTPSampler.domain">demowebshop.tricentis.com</stringProp>
-              <stringProp name="HTTPSampler.port">443</stringProp>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/addproducttocart/catalog/22/1/1-299">
+              <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+              <stringProp name="HTTPSampler.port">${port}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
-              <stringProp name="HTTPSampler.path">/search</stringProp>
+              <stringProp name="HTTPSampler.path">/addproducttocart/catalog/22/1/1</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
               <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
               <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="q" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.name">q</stringProp>
-                    <stringProp name="Argument.value">${randomProductKeyword}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  </elementProp>
-                </collectionProp>
+                <collectionProp name="Arguments.arguments"/>
               </elementProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-                <collectionProp name="HeaderManager.headers">
-                  <elementProp name="Sec-Fetch-Mode" elementType="Header">
-                    <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
-                    <stringProp name="Header.value">navigate</stringProp>
-                  </elementProp>
-                  <elementProp name="Referer" elementType="Header">
-                    <stringProp name="Header.name">Referer</stringProp>
-                    <stringProp name="Header.value">https://demowebshop.tricentis.com/</stringProp>
-                  </elementProp>
-                  <elementProp name="Sec-Fetch-Site" elementType="Header">
-                    <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
-                    <stringProp name="Header.value">same-origin</stringProp>
-                  </elementProp>
-                  <elementProp name="Accept-Language" elementType="Header">
-                    <stringProp name="Header.name">Accept-Language</stringProp>
-                    <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
-                  </elementProp>
-                  <elementProp name="Sec-Fetch-User" elementType="Header">
-                    <stringProp name="Header.name">Sec-Fetch-User</stringProp>
-                    <stringProp name="Header.value">?1</stringProp>
-                  </elementProp>
-                  <elementProp name="Accept" elementType="Header">
-                    <stringProp name="Header.name">Accept</stringProp>
-                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
-                  </elementProp>
-                  <elementProp name="sec-ch-ua" elementType="Header">
-                    <stringProp name="Header.name">sec-ch-ua</stringProp>
-                    <stringProp name="Header.value">&quot;Google Chrome&quot;;v=&quot;137&quot;, &quot;Chromium&quot;;v=&quot;137&quot;, &quot;Not/A)Brand&quot;;v=&quot;24&quot;</stringProp>
-                  </elementProp>
-                  <elementProp name="sec-ch-ua-mobile" elementType="Header">
-                    <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
-                    <stringProp name="Header.value">?0</stringProp>
-                  </elementProp>
-                  <elementProp name="sec-ch-ua-platform" elementType="Header">
-                    <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
-                    <stringProp name="Header.value">&quot;Windows&quot;</stringProp>
-                  </elementProp>
-                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
-                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
-                    <stringProp name="Header.value">1</stringProp>
-                  </elementProp>
-                  <elementProp name="Accept-Encoding" elementType="Header">
-                    <stringProp name="Header.name">Accept-Encoding</stringProp>
-                    <stringProp name="Header.value">gzip, deflate, br, zstd</stringProp>
-                  </elementProp>
-                  <elementProp name="User-Agent" elementType="Header">
-                    <stringProp name="Header.name">User-Agent</stringProp>
-                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36</stringProp>
-                  </elementProp>
-                  <elementProp name="Sec-Fetch-Dest" elementType="Header">
-                    <stringProp name="Header.name">Sec-Fetch-Dest</stringProp>
-                    <stringProp name="Header.value">document</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </HeaderManager>
-              <hashTree/>
-              <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
-                <boolProp name="resetInterpreter">false</boolProp>
-                <stringProp name="parameters"></stringProp>
-                <stringProp name="filename"></stringProp>
-                <stringProp name="script">// Define an array of product-related words
-String[] keywords = {
-    &quot;apparel&quot;, &quot;awesome&quot;, &quot;book&quot;, &quot;camera&quot;, &quot;cell&quot;, &quot;compact&quot;, 
-    &quot;computer&quot;, &quot;cool&quot;, &quot;digital&quot;, &quot;jeans&quot;, &quot;jewelry&quot;, 
-    &quot;nice&quot;, &quot;shirt&quot;, &quot;shoes&quot;, &quot;TCP&quot;
-};
-// Generate a random index
-int index = (int)(Math.random() * keywords.length);
-
-// Set the chosen word to a JMeter variable
-vars.put(&quot;randomProductKeyword&quot;, keywords[index]);</stringProp>
-              </BeanShellPreProcessor>
-              <hashTree/>
-            </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-298" enabled="true">
-              <stringProp name="HTTPSampler.domain">ssl.google-analytics.com</stringProp>
-              <stringProp name="HTTPSampler.port">443</stringProp>
-              <stringProp name="HTTPSampler.protocol">https</stringProp>
-              <stringProp name="HTTPSampler.path">/__utm.gif</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="utmwv" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.name">utmwv</stringProp>
-                    <stringProp name="Argument.value">5.7.2</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  </elementProp>
-                  <elementProp name="utms" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.name">utms</stringProp>
-                    <stringProp name="Argument.value">61</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  </elementProp>
-                  <elementProp name="utmn" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.name">utmn</stringProp>
-                    <stringProp name="Argument.value">1393881016</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  </elementProp>
-                  <elementProp name="utmhn" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.name">utmhn</stringProp>
-                    <stringProp name="Argument.value">demowebshop.tricentis.com</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  </elementProp>
-                  <elementProp name="utmcs" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.name">utmcs</stringProp>
-                    <stringProp name="Argument.value">UTF-8</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  </elementProp>
-                  <elementProp name="utmsr" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.name">utmsr</stringProp>
-                    <stringProp name="Argument.value">1536x864</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  </elementProp>
-                  <elementProp name="utmvp" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.name">utmvp</stringProp>
-                    <stringProp name="Argument.value">1521x730</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  </elementProp>
-                  <elementProp name="utmsc" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.name">utmsc</stringProp>
-                    <stringProp name="Argument.value">24-bit</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  </elementProp>
-                  <elementProp name="utmul" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.name">utmul</stringProp>
-                    <stringProp name="Argument.value">en-us</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  </elementProp>
-                  <elementProp name="utmje" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.name">utmje</stringProp>
-                    <stringProp name="Argument.value">0</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  </elementProp>
-                  <elementProp name="utmfl" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.name">utmfl</stringProp>
-                    <stringProp name="Argument.value">-</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  </elementProp>
-                  <elementProp name="utmdt" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.name">utmdt</stringProp>
-                    <stringProp name="Argument.value">Demo Web Shop. Search</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  </elementProp>
-                  <elementProp name="utmhid" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.name">utmhid</stringProp>
-                    <stringProp name="Argument.value">1765784813</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  </elementProp>
-                  <elementProp name="utmr" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.name">utmr</stringProp>
-                    <stringProp name="Argument.value">0</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  </elementProp>
-                  <elementProp name="utmp" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.name">utmp</stringProp>
-                    <stringProp name="Argument.value">/search?q=book</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  </elementProp>
-                  <elementProp name="utmht" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.name">utmht</stringProp>
-                    <stringProp name="Argument.value">1750233228721</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  </elementProp>
-                  <elementProp name="utmac" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.name">utmac</stringProp>
-                    <stringProp name="Argument.value">UA-6574346-11</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  </elementProp>
-                  <elementProp name="utmcc" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.name">utmcc</stringProp>
-                    <stringProp name="Argument.value">__utma=78382081.1822171657.1750228925.1750228925.1750228925.1;+__utmz=78382081.1750228925.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none);</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                  </elementProp>
-                  <elementProp name="utmjid" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.name">utmjid</stringProp>
-                    <stringProp name="Argument.value"></stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                  </elementProp>
-                  <elementProp name="utmu" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                    <stringProp name="Argument.name">utmu</stringProp>
-                    <stringProp name="Argument.value">qAAAAAAAAAAAAAAAAAAAAAAE~</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-                <collectionProp name="HeaderManager.headers">
-                  <elementProp name="Sec-Fetch-Mode" elementType="Header">
-                    <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
-                    <stringProp name="Header.value">no-cors</stringProp>
-                  </elementProp>
-                  <elementProp name="Sec-Fetch-Storage-Access" elementType="Header">
-                    <stringProp name="Header.name">Sec-Fetch-Storage-Access</stringProp>
-                    <stringProp name="Header.value">active</stringProp>
-                  </elementProp>
-                  <elementProp name="Referer" elementType="Header">
-                    <stringProp name="Header.name">Referer</stringProp>
-                    <stringProp name="Header.value">https://demowebshop.tricentis.com/</stringProp>
-                  </elementProp>
-                  <elementProp name="Sec-Fetch-Site" elementType="Header">
-                    <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
-                    <stringProp name="Header.value">cross-site</stringProp>
-                  </elementProp>
-                  <elementProp name="Accept-Language" elementType="Header">
-                    <stringProp name="Header.name">Accept-Language</stringProp>
-                    <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
-                  </elementProp>
-                  <elementProp name="Accept" elementType="Header">
-                    <stringProp name="Header.name">Accept</stringProp>
-                    <stringProp name="Header.value">image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8</stringProp>
-                  </elementProp>
-                  <elementProp name="sec-ch-ua" elementType="Header">
-                    <stringProp name="Header.name">sec-ch-ua</stringProp>
-                    <stringProp name="Header.value">&quot;Google Chrome&quot;;v=&quot;137&quot;, &quot;Chromium&quot;;v=&quot;137&quot;, &quot;Not/A)Brand&quot;;v=&quot;24&quot;</stringProp>
-                  </elementProp>
-                  <elementProp name="sec-ch-ua-mobile" elementType="Header">
-                    <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
-                    <stringProp name="Header.value">?0</stringProp>
-                  </elementProp>
-                  <elementProp name="sec-ch-ua-platform" elementType="Header">
-                    <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
-                    <stringProp name="Header.value">&quot;Windows&quot;</stringProp>
-                  </elementProp>
-                  <elementProp name="Accept-Encoding" elementType="Header">
-                    <stringProp name="Header.name">Accept-Encoding</stringProp>
-                    <stringProp name="Header.value">gzip, deflate, br, zstd</stringProp>
-                  </elementProp>
-                  <elementProp name="User-Agent" elementType="Header">
-                    <stringProp name="Header.name">User-Agent</stringProp>
-                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36</stringProp>
-                  </elementProp>
-                  <elementProp name="Sec-Fetch-Dest" elementType="Header">
-                    <stringProp name="Header.name">Sec-Fetch-Dest</stringProp>
-                    <stringProp name="Header.value">image</stringProp>
-                  </elementProp>
-                </collectionProp>
-              </HeaderManager>
-              <hashTree/>
-            </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/catalog/searchtermautocomplete-297">
-              <stringProp name="HTTPSampler.domain">demowebshop.tricentis.com</stringProp>
-              <stringProp name="HTTPSampler.port">443</stringProp>
-              <stringProp name="HTTPSampler.protocol">https</stringProp>
-              <stringProp name="HTTPSampler.path">/catalog/searchtermautocomplete</stringProp>
-              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-              <stringProp name="HTTPSampler.method">GET</stringProp>
-              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-                <collectionProp name="Arguments.arguments">
-                  <elementProp name="term" elementType="HTTPArgument">
-                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.name">term</stringProp>
-                    <stringProp name="Argument.value">${randomProductKeyword}</stringProp>
-                    <stringProp name="Argument.metadata">=</stringProp>
-                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  </elementProp>
-                </collectionProp>
-              </elementProp>
-            </HTTPSamplerProxy>
-            <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="Sec-Fetch-Mode" elementType="Header">
                     <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
@@ -2899,7 +2638,7 @@ vars.put(&quot;randomProductKeyword&quot;, keywords[index]);</stringProp>
                   </elementProp>
                   <elementProp name="Referer" elementType="Header">
                     <stringProp name="Header.name">Referer</stringProp>
-                    <stringProp name="Header.value">https://demowebshop.tricentis.com/</stringProp>
+                    <stringProp name="Header.value">https://${URL}/search?q=book</stringProp>
                   </elementProp>
                   <elementProp name="Sec-Fetch-Site" elementType="Header">
                     <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
@@ -2909,9 +2648,13 @@ vars.put(&quot;randomProductKeyword&quot;, keywords[index]);</stringProp>
                     <stringProp name="Header.name">Accept-Language</stringProp>
                     <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
                   </elementProp>
+                  <elementProp name="Origin" elementType="Header">
+                    <stringProp name="Header.name">Origin</stringProp>
+                    <stringProp name="Header.value">https://${URL}</stringProp>
+                  </elementProp>
                   <elementProp name="Accept" elementType="Header">
                     <stringProp name="Header.name">Accept</stringProp>
-                    <stringProp name="Header.value">application/json, text/javascript, */*; q=0.01</stringProp>
+                    <stringProp name="Header.value">*/*</stringProp>
                   </elementProp>
                   <elementProp name="sec-ch-ua" elementType="Header">
                     <stringProp name="Header.name">sec-ch-ua</stringProp>
@@ -2944,34 +2687,14 @@ vars.put(&quot;randomProductKeyword&quot;, keywords[index]);</stringProp>
                 </collectionProp>
               </HeaderManager>
               <hashTree/>
-              <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell Assertion">
-                <stringProp name="BeanShellAssertion.query">import org.json.JSONArray;
-import org.json.JSONObject;
-
-String response = prev.getResponseDataAsString();
-String searchTerm = vars.get(&quot;randomProductKeyword&quot;);
-JSONArray jsonArray = new JSONArray(response);
-
-boolean found = false;
-
-for (int i = 0; i &lt; jsonArray.length(); i++) {
-    JSONObject item = jsonArray.getJSONObject(i);
-    String label = item.getString(&quot;label&quot;);
-    if (label.toLowerCase().contains(searchTerm.toLowerCase())) {
-        found = true;
-        log.info(&quot;Search term &apos;&quot; + searchTerm + &quot;&apos; found.&quot;);
-        break;
-    }
-}
-
-if (found) {
-    vars.put(&quot;searchSuccess&quot;, &quot;true&quot;);
+              <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="VERIFY ADD TO CART ">
+                <stringProp name="BeanShellAssertion.query">String response = prev.getResponseDataAsString();
+if (response.contains(&quot;The product has been added&quot;)) {
+    log.info(&quot;Product added to the cart&quot;);
 } else {
-    vars.put(&quot;searchSuccess&quot;, &quot;false&quot;);
+    log.error(&quot;Product is not added to the cart&quot;);
     Failure = true;
-    FailureMessage = &quot;Search term &apos;&quot; + searchTerm + &quot;&apos; not found.&quot;;
-}
-</stringProp>
+}</stringProp>
                 <stringProp name="BeanShellAssertion.filename"></stringProp>
                 <stringProp name="BeanShellAssertion.parameters"></stringProp>
                 <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
@@ -2979,103 +2702,9 @@ if (found) {
               <hashTree/>
             </hashTree>
           </hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller">
-            <stringProp name="IfController.condition">${searchSuccess} == true</stringProp>
-            <boolProp name="IfController.evaluateAll">false</boolProp>
-            <boolProp name="IfController.useExpression">true</boolProp>
-          </IfController>
-          <hashTree>
-            <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler">
-              <stringProp name="cacheKey">true</stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="script">vars.put(&quot;continueLoop&quot;, &quot;false&quot;);
-</stringProp>
-              <stringProp name="scriptLanguage">groovy</stringProp>
-            </JSR223Sampler>
-            <hashTree/>
-          </hashTree>
-        </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Add_To_Cart">
-          <boolProp name="TransactionController.parent">true</boolProp>
-          <boolProp name="TransactionController.includeTimers">false</boolProp>
-        </TransactionController>
-        <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/addproducttocart/catalog/22/1/1-299">
-            <stringProp name="HTTPSampler.domain">demowebshop.tricentis.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
-            <stringProp name="HTTPSampler.protocol">https</stringProp>
-            <stringProp name="HTTPSampler.path">/addproducttocart/catalog/22/1/1</stringProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-            <stringProp name="HTTPSampler.method">POST</stringProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-              <collectionProp name="Arguments.arguments"/>
-            </elementProp>
-          </HTTPSamplerProxy>
-          <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-              <collectionProp name="HeaderManager.headers">
-                <elementProp name="Sec-Fetch-Mode" elementType="Header">
-                  <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
-                  <stringProp name="Header.value">cors</stringProp>
-                </elementProp>
-                <elementProp name="Referer" elementType="Header">
-                  <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">https://demowebshop.tricentis.com/search?q=book</stringProp>
-                </elementProp>
-                <elementProp name="Sec-Fetch-Site" elementType="Header">
-                  <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
-                  <stringProp name="Header.value">same-origin</stringProp>
-                </elementProp>
-                <elementProp name="Accept-Language" elementType="Header">
-                  <stringProp name="Header.name">Accept-Language</stringProp>
-                  <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
-                </elementProp>
-                <elementProp name="Origin" elementType="Header">
-                  <stringProp name="Header.name">Origin</stringProp>
-                  <stringProp name="Header.value">https://demowebshop.tricentis.com</stringProp>
-                </elementProp>
-                <elementProp name="Accept" elementType="Header">
-                  <stringProp name="Header.name">Accept</stringProp>
-                  <stringProp name="Header.value">*/*</stringProp>
-                </elementProp>
-                <elementProp name="sec-ch-ua" elementType="Header">
-                  <stringProp name="Header.name">sec-ch-ua</stringProp>
-                  <stringProp name="Header.value">&quot;Google Chrome&quot;;v=&quot;137&quot;, &quot;Chromium&quot;;v=&quot;137&quot;, &quot;Not/A)Brand&quot;;v=&quot;24&quot;</stringProp>
-                </elementProp>
-                <elementProp name="sec-ch-ua-mobile" elementType="Header">
-                  <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
-                  <stringProp name="Header.value">?0</stringProp>
-                </elementProp>
-                <elementProp name="sec-ch-ua-platform" elementType="Header">
-                  <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
-                  <stringProp name="Header.value">&quot;Windows&quot;</stringProp>
-                </elementProp>
-                <elementProp name="X-Requested-With" elementType="Header">
-                  <stringProp name="Header.name">X-Requested-With</stringProp>
-                  <stringProp name="Header.value">XMLHttpRequest</stringProp>
-                </elementProp>
-                <elementProp name="Accept-Encoding" elementType="Header">
-                  <stringProp name="Header.name">Accept-Encoding</stringProp>
-                  <stringProp name="Header.value">gzip, deflate, br, zstd</stringProp>
-                </elementProp>
-                <elementProp name="User-Agent" elementType="Header">
-                  <stringProp name="Header.name">User-Agent</stringProp>
-                  <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36</stringProp>
-                </elementProp>
-                <elementProp name="Sec-Fetch-Dest" elementType="Header">
-                  <stringProp name="Header.name">Sec-Fetch-Dest</stringProp>
-                  <stringProp name="Header.value">empty</stringProp>
-                </elementProp>
-              </collectionProp>
-            </HeaderManager>
-            <hashTree/>
-          </hashTree>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="CheckOut_Users" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="CheckOut_Users" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${users}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup}</stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -3090,12 +2719,294 @@ if (found) {
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
-        <hashTree/>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Checkout">
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/cart-7">
+            <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+            <stringProp name="HTTPSampler.port">${port}</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.path">/cart</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Sec-Fetch-Mode" elementType="Header">
+                  <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
+                  <stringProp name="Header.value">navigate</stringProp>
+                </elementProp>
+                <elementProp name="Referer" elementType="Header">
+                  <stringProp name="Header.name">Referer</stringProp>
+                  <stringProp name="Header.value">https://${URL}/</stringProp>
+                </elementProp>
+                <elementProp name="Sec-Fetch-Site" elementType="Header">
+                  <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
+                  <stringProp name="Header.value">same-origin</stringProp>
+                </elementProp>
+                <elementProp name="Accept-Language" elementType="Header">
+                  <stringProp name="Header.name">Accept-Language</stringProp>
+                  <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+                </elementProp>
+                <elementProp name="Sec-Fetch-User" elementType="Header">
+                  <stringProp name="Header.name">Sec-Fetch-User</stringProp>
+                  <stringProp name="Header.value">?1</stringProp>
+                </elementProp>
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
+                </elementProp>
+                <elementProp name="sec-ch-ua" elementType="Header">
+                  <stringProp name="Header.name">sec-ch-ua</stringProp>
+                  <stringProp name="Header.value">&quot;Google Chrome&quot;;v=&quot;137&quot;, &quot;Chromium&quot;;v=&quot;137&quot;, &quot;Not/A)Brand&quot;;v=&quot;24&quot;</stringProp>
+                </elementProp>
+                <elementProp name="sec-ch-ua-mobile" elementType="Header">
+                  <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
+                  <stringProp name="Header.value">?0</stringProp>
+                </elementProp>
+                <elementProp name="sec-ch-ua-platform" elementType="Header">
+                  <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
+                  <stringProp name="Header.value">&quot;Windows&quot;</stringProp>
+                </elementProp>
+                <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                  <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                  <stringProp name="Header.value">1</stringProp>
+                </elementProp>
+                <elementProp name="Accept-Encoding" elementType="Header">
+                  <stringProp name="Header.name">Accept-Encoding</stringProp>
+                  <stringProp name="Header.value">gzip, deflate, br, zstd</stringProp>
+                </elementProp>
+                <elementProp name="User-Agent" elementType="Header">
+                  <stringProp name="Header.name">User-Agent</stringProp>
+                  <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36</stringProp>
+                </elementProp>
+                <elementProp name="Sec-Fetch-Dest" elementType="Header">
+                  <stringProp name="Header.name">Sec-Fetch-Dest</stringProp>
+                  <stringProp name="Header.value">document</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-${users}${users}">
+            <stringProp name="HTTPSampler.domain">ssl.google-analytics.com</stringProp>
+            <stringProp name="HTTPSampler.port">${port}</stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.path">/__utm.gif</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="utmwv" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">utmwv</stringProp>
+                  <stringProp name="Argument.value">5.7.2</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="utms" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">utms</stringProp>
+                  <stringProp name="Argument.value">5</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="utmn" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">utmn</stringProp>
+                  <stringProp name="Argument.value">221095921</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="utmhn" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">utmhn</stringProp>
+                  <stringProp name="Argument.value">${URL}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="utmcs" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">utmcs</stringProp>
+                  <stringProp name="Argument.value">UTF-8</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="utmsr" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">utmsr</stringProp>
+                  <stringProp name="Argument.value">1536x864</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="utmvp" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">utmvp</stringProp>
+                  <stringProp name="Argument.value">1521x730</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="utmsc" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">utmsc</stringProp>
+                  <stringProp name="Argument.value">24-bit</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="utmul" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">utmul</stringProp>
+                  <stringProp name="Argument.value">en-us</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="utmje" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">utmje</stringProp>
+                  <stringProp name="Argument.value">0</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="utmfl" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">utmfl</stringProp>
+                  <stringProp name="Argument.value">-</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="utmdt" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">utmdt</stringProp>
+                  <stringProp name="Argument.value">Demo Web Shop. Shopping Cart</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="utmhid" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">utmhid</stringProp>
+                  <stringProp name="Argument.value">1904958974</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="utmr" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">utmr</stringProp>
+                  <stringProp name="Argument.value">0</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="utmp" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">utmp</stringProp>
+                  <stringProp name="Argument.value">/cart</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="utmht" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">utmht</stringProp>
+                  <stringProp name="Argument.value">1750257931872</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="utmac" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">utmac</stringProp>
+                  <stringProp name="Argument.value">UA-6574346-11</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="utmcc" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">utmcc</stringProp>
+                  <stringProp name="Argument.value">__utma=78382081.1822171657.1750228925.1750247722.1750257853.5;+__utmz=78382081.1750228925.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none);</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="utmjid" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">utmjid</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="utmu" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">utmu</stringProp>
+                  <stringProp name="Argument.value">qAAAAAAAAAAAAAAAAAAAAAAE~</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Sec-Fetch-Mode" elementType="Header">
+                  <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
+                  <stringProp name="Header.value">no-cors</stringProp>
+                </elementProp>
+                <elementProp name="Sec-Fetch-Storage-Access" elementType="Header">
+                  <stringProp name="Header.name">Sec-Fetch-Storage-Access</stringProp>
+                  <stringProp name="Header.value">active</stringProp>
+                </elementProp>
+                <elementProp name="Referer" elementType="Header">
+                  <stringProp name="Header.name">Referer</stringProp>
+                  <stringProp name="Header.value">https://${URL}/</stringProp>
+                </elementProp>
+                <elementProp name="Sec-Fetch-Site" elementType="Header">
+                  <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
+                  <stringProp name="Header.value">cross-site</stringProp>
+                </elementProp>
+                <elementProp name="Accept-Language" elementType="Header">
+                  <stringProp name="Header.name">Accept-Language</stringProp>
+                  <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+                </elementProp>
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8</stringProp>
+                </elementProp>
+                <elementProp name="sec-ch-ua" elementType="Header">
+                  <stringProp name="Header.name">sec-ch-ua</stringProp>
+                  <stringProp name="Header.value">&quot;Google Chrome&quot;;v=&quot;137&quot;, &quot;Chromium&quot;;v=&quot;137&quot;, &quot;Not/A)Brand&quot;;v=&quot;24&quot;</stringProp>
+                </elementProp>
+                <elementProp name="sec-ch-ua-mobile" elementType="Header">
+                  <stringProp name="Header.name">sec-ch-ua-mobile</stringProp>
+                  <stringProp name="Header.value">?0</stringProp>
+                </elementProp>
+                <elementProp name="sec-ch-ua-platform" elementType="Header">
+                  <stringProp name="Header.name">sec-ch-ua-platform</stringProp>
+                  <stringProp name="Header.value">&quot;Windows&quot;</stringProp>
+                </elementProp>
+                <elementProp name="Accept-Encoding" elementType="Header">
+                  <stringProp name="Header.name">Accept-Encoding</stringProp>
+                  <stringProp name="Header.value">gzip, deflate, br, zstd</stringProp>
+                </elementProp>
+                <elementProp name="User-Agent" elementType="Header">
+                  <stringProp name="Header.name">User-Agent</stringProp>
+                  <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36</stringProp>
+                </elementProp>
+                <elementProp name="Sec-Fetch-Dest" elementType="Header">
+                  <stringProp name="Header.name">Sec-Fetch-Dest</stringProp>
+                  <stringProp name="Header.value">image</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Checkout" enabled="true">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree/>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Complete_Checkout">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Complete_Checkout" enabled="true">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree/>
@@ -3111,15 +3022,15 @@ if (found) {
         </elementProp>
       </PostThreadGroup>
       <hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Logout">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Logout" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/logout-300">
             <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-            <stringProp name="HTTPSampler.domain">demowebshop.tricentis.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
+            <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+            <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
             <stringProp name="HTTPSampler.path">/logout</stringProp>
@@ -3140,7 +3051,7 @@ if (found) {
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">https://demowebshop.tricentis.com/search?q=book</stringProp>
+                  <stringProp name="Header.value">https://${URL}/search?q=book</stringProp>
                 </elementProp>
                 <elementProp name="Sec-Fetch-Site" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
@@ -3191,8 +3102,8 @@ if (found) {
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/-301" enabled="true">
-            <stringProp name="HTTPSampler.domain">demowebshop.tricentis.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
+            <stringProp name="HTTPSampler.domain">${URL}</stringProp>
+            <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
             <stringProp name="HTTPSampler.path">/</stringProp>
@@ -3213,7 +3124,7 @@ if (found) {
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">https://demowebshop.tricentis.com/search?q=book</stringProp>
+                  <stringProp name="Header.value">https://${URL}/search?q=book</stringProp>
                 </elementProp>
                 <elementProp name="Sec-Fetch-Site" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
@@ -3262,10 +3173,23 @@ if (found) {
               </collectionProp>
             </HeaderManager>
             <hashTree/>
+            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="VERIFY LOGOUT" enabled="true">
+              <stringProp name="BeanShellAssertion.query">String response = prev.getResponseDataAsString();
+if (response.contains(&quot;Log in&quot;)) {
+    log.info(&quot;User Logged out&quot;);
+} else {
+    log.error(&quot;User not Logged out&quot;);
+    Failure = true;
+}</stringProp>
+              <stringProp name="BeanShellAssertion.filename"></stringProp>
+              <stringProp name="BeanShellAssertion.parameters"></stringProp>
+              <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+            </BeanShellAssertion>
+            <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/r/__utm.gif-302">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/r/__utm.gif-302" enabled="true">
             <stringProp name="HTTPSampler.domain">ssl.google-analytics.com</stringProp>
-            <stringProp name="HTTPSampler.port">443</stringProp>
+            <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.path">/r/__utm.gif</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -3298,7 +3222,7 @@ if (found) {
                 <elementProp name="utmhn" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">utmhn</stringProp>
-                  <stringProp name="Argument.value">demowebshop.tricentis.com</stringProp>
+                  <stringProp name="Argument.value">${URL}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
@@ -3398,24 +3322,28 @@ if (found) {
                   <stringProp name="Argument.name">utmcc</stringProp>
                   <stringProp name="Argument.value">__utma=78382081.1822171657.1750228925.1750228925.1750228925.1;+__utmz=78382081.1750228925.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none);</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
                 <elementProp name="utmjid" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">utmjid</stringProp>
                   <stringProp name="Argument.value">1296810703</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
                 <elementProp name="utmredir" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.name">utmredir</stringProp>
                   <stringProp name="Argument.value">1</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
                 <elementProp name="utmu" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">true</boolProp>
                   <stringProp name="Argument.name">utmu</stringProp>
                   <stringProp name="Argument.value">qAAAAAAAAAAAAAAAAAAAAAAE~</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
@@ -3433,7 +3361,7 @@ if (found) {
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">https://demowebshop.tricentis.com/</stringProp>
+                  <stringProp name="Header.value">https://${URL}/</stringProp>
                 </elementProp>
                 <elementProp name="Sec-Fetch-Site" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Site</stringProp>
@@ -3476,7 +3404,7 @@ if (found) {
             <hashTree/>
           </hashTree>
         </hashTree>
-        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler">
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
           <boolProp name="displayJMeterProperties">false</boolProp>
           <boolProp name="displayJMeterVariables">true</boolProp>
           <boolProp name="displaySystemProperties">false</boolProp>
@@ -3584,7 +3512,7 @@ if (found) {
         <stringProp name="filename">E:\BEANSHELL\DemoWebShop_Practice1.xml</stringProp>
       </ResultCollector>
       <hashTree/>
-      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config">
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
         <stringProp name="filename">D:\Writings\DemoWebShop_Datas.csv</stringProp>
         <stringProp name="fileEncoding"></stringProp>
         <stringProp name="variableNames">Gender,fn,ln,email,pw,cpw</stringProp>
@@ -3611,6 +3539,27 @@ if (found) {
           <elementProp name="loop" elementType="Argument">
             <stringProp name="Argument.name">loop</stringProp>
             <stringProp name="Argument.value">1</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="mail" elementType="Argument">
+            <stringProp name="Argument.name">mail</stringProp>
+            <stringProp name="Argument.value">glr2020@gmail.com</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="pass" elementType="Argument">
+            <stringProp name="Argument.name">pass</stringProp>
+            <stringProp name="Argument.value">123456</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="URL" elementType="Argument">
+            <stringProp name="Argument.name">URL</stringProp>
+            <stringProp name="Argument.value">demowebshop.tricentis.com</stringProp>
+            <stringProp name="Argument.desc"></stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="port" elementType="Argument">
+            <stringProp name="Argument.name">port</stringProp>
+            <stringProp name="Argument.value">443</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
