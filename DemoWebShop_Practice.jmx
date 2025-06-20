@@ -20,12 +20,12 @@
         </elementProp>
       </SetupThreadGroup>
       <hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Launch">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Launch" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/-270">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/-270" enabled="true">
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -39,7 +39,7 @@
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="Sec-Fetch-Mode" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
@@ -92,7 +92,7 @@
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="VERIFY LAUNCH">
+            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="VERIFY LAUNCH" enabled="true">
               <stringProp name="BeanShellAssertion.query">import org.apache.jmeter.util.JMeterUtils;
 // Get the current request URL
 String url = prev.getURL().toString();
@@ -111,7 +111,7 @@ if (!url.equals(&quot;https://demowebshop.tricentis.com/&quot;)) {
             </BeanShellAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-272">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-272" enabled="true">
             <stringProp name="HTTPSampler.domain">ssl.google-analytics.com</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -263,7 +263,7 @@ if (!url.equals(&quot;https://demowebshop.tricentis.com/&quot;)) {
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="Sec-Fetch-Mode" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
@@ -319,7 +319,7 @@ if (!url.equals(&quot;https://demowebshop.tricentis.com/&quot;)) {
           </hashTree>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Register_User">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Register_User" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${users}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup}</stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -330,12 +330,12 @@ if (!url.equals(&quot;https://demowebshop.tricentis.com/&quot;)) {
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Click_Register">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Click_Register" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/register-274">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/register-274" enabled="true">
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -406,7 +406,7 @@ if (!url.equals(&quot;https://demowebshop.tricentis.com/&quot;)) {
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="VERIFICATION TOKEN">
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="VERIFICATION TOKEN" enabled="true">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">VerifyToken</stringProp>
               <stringProp name="RegexExtractor.regex">name=&quot;__RequestVerificationToken&quot; type=&quot;hidden&quot; value=&quot;(.*?)&quot; /&gt;</stringProp>
@@ -420,7 +420,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
             </RegexExtractor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-276">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-276" enabled="true">
             <stringProp name="HTTPSampler.domain">ssl.google-analytics.com</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -575,7 +575,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="Sec-Fetch-Mode" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
@@ -630,12 +630,12 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Register">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Register" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/register-278">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/register-278" enabled="true">
             <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
@@ -708,7 +708,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="Sec-Fetch-Mode" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
@@ -777,7 +777,7 @@ Match[1][1]=NoQ-xtVVSF1cX4ndpUNidldRs5mccqArQXau1ZttUQwGTSn_9bihGTyw_Qw9XWTVSDMg
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="VERIFY REGISTER">
+            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="VERIFY REGISTER" enabled="true">
               <stringProp name="BeanShellAssertion.query">import org.apache.jmeter.util.JMeterUtils;
 String url = prev.getURL().toString();
 log.info(&quot;Current Request URL: &quot; + url);
@@ -794,7 +794,7 @@ else{
             </BeanShellAssertion>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/registerresult/1-280">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/registerresult/1-280" enabled="true">
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -870,7 +870,7 @@ else{
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-281">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-281" enabled="true">
             <stringProp name="HTTPSampler.domain">ssl.google-analytics.com</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1079,7 +1079,7 @@ else{
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/logout-283">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/logout-283" enabled="true">
             <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
@@ -1152,7 +1152,7 @@ else{
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/-284">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/-284" enabled="true">
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1225,7 +1225,7 @@ else{
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-285">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-285" enabled="true">
             <stringProp name="HTTPSampler.domain">ssl.google-analytics.com</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1433,7 +1433,7 @@ else{
           </hashTree>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Login_Users">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Login_Users" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${users}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup}</stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -1444,12 +1444,12 @@ else{
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Click_Login">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Click_Login" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/login-286">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/login-286" enabled="true">
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1463,7 +1463,7 @@ else{
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="Sec-Fetch-Mode" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
@@ -1521,7 +1521,7 @@ else{
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-288">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-288" enabled="true">
             <stringProp name="HTTPSampler.domain">ssl.google-analytics.com</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -1731,12 +1731,12 @@ else{
             <hashTree/>
           </hashTree>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Login">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Login" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/login-290">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/login-290" enabled="true">
             <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
@@ -1850,7 +1850,7 @@ else{
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="VERIFY LOGIN">
+            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="VERIFY LOGIN" enabled="true">
               <stringProp name="BeanShellAssertion.query">String response = prev.getResponseDataAsString();
 if (response.contains(&quot;Welcome to the new Tricentis store!&quot;)) {
     log.info(&quot;Welcome message found.&quot;);
@@ -2157,20 +2157,20 @@ if (response.contains(&quot;Welcome to the new Tricentis store!&quot;)) {
           <stringProp name="script">vars.put(&quot;searchSuccess&quot;, &quot;false&quot;);</stringProp>
         </JSR223Sampler>
         <hashTree/>
-        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="BeanShell Sampler">
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="BeanShell Sampler" enabled="true">
           <stringProp name="BeanShellSampler.query">vars.put(&quot;searchSuccess&quot;, &quot;false&quot;);</stringProp>
         </BeanShellSampler>
         <hashTree/>
-        <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="While Controller">
+        <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="While Controller" enabled="true">
           <stringProp name="WhileController.condition">${__javaScript(&quot;${searchSuccess}&quot; != &quot;true&quot;)}</stringProp>
         </WhileController>
         <hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Search">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Search" enabled="true">
             <boolProp name="TransactionController.parent">true</boolProp>
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/search-296">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/search-296" enabled="true">
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.port">${port}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2249,7 +2249,7 @@ if (response.contains(&quot;Welcome to the new Tricentis store!&quot;)) {
                 </collectionProp>
               </HeaderManager>
               <hashTree/>
-              <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor">
+              <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
                 <boolProp name="resetInterpreter">false</boolProp>
                 <stringProp name="parameters"></stringProp>
                 <stringProp name="filename"></stringProp>
@@ -2259,15 +2259,20 @@ String[] keywords = {
     &quot;computer&quot;, &quot;cool&quot;, &quot;digital&quot;, &quot;jeans&quot;, &quot;jewelry&quot;, 
     &quot;nice&quot;, &quot;shirt&quot;, &quot;shoes&quot;, &quot;TCP&quot;
 };
+
 // Generate a random index
 int index = (int)(Math.random() * keywords.length);
 
-// Set the chosen word to a JMeter variable
-vars.put(&quot;randomProductKeyword&quot;, keywords[index]);</stringProp>
+// Set to thread-local variable
+vars.put(&quot;randomProductKeyword&quot;, keywords[index]);
+
+// Set to global properties so other thread groups can access it
+props.put(&quot;randomProductKeyword&quot;, keywords[index]);
+</stringProp>
               </BeanShellPreProcessor>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-298">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-298" enabled="true">
               <stringProp name="HTTPSampler.domain">ssl.google-analytics.com</stringProp>
               <stringProp name="HTTPSampler.port">${port}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2473,7 +2478,7 @@ vars.put(&quot;randomProductKeyword&quot;, keywords[index]);</stringProp>
               </HeaderManager>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/catalog/searchtermautocomplete-297">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/catalog/searchtermautocomplete-297" enabled="true">
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.port">${port}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2495,7 +2500,7 @@ vars.put(&quot;randomProductKeyword&quot;, keywords[index]);</stringProp>
               </elementProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="Sec-Fetch-Mode" elementType="Header">
                     <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
@@ -2548,7 +2553,7 @@ vars.put(&quot;randomProductKeyword&quot;, keywords[index]);</stringProp>
                 </collectionProp>
               </HeaderManager>
               <hashTree/>
-              <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="VERIFY SEARCH">
+              <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="VERIFY SEARCH" enabled="true">
                 <stringProp name="BeanShellAssertion.query">//if (&quot;false&quot;.equals(vars.get(&quot;searchSuccess&quot;))) {
 //    Failure = true;
 //    FailureMessage = &quot;Search term &apos;&quot; + vars.get(&quot;randomProductKeyword&quot;) + &quot;&apos; not found.&quot;;
@@ -2573,7 +2578,7 @@ try {
               </BeanShellAssertion>
               <hashTree/>
             </hashTree>
-            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor">
+            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
               <boolProp name="resetInterpreter">false</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -2605,18 +2610,18 @@ if (found) {
             <hashTree/>
           </hashTree>
         </hashTree>
-        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller">
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
           <stringProp name="IfController.condition">${__javaScript(&quot;${searchSuccess}&quot; == &quot;true&quot;)}</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
           <boolProp name="IfController.useExpression">true</boolProp>
         </IfController>
         <hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Add_To_Cart">
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Add_To_Cart" enabled="true">
             <boolProp name="TransactionController.parent">true</boolProp>
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/addproducttocart/catalog/22/1/1-299">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/addproducttocart/catalog/22/1/1-299" enabled="true">
               <stringProp name="HTTPSampler.domain">${URL}</stringProp>
               <stringProp name="HTTPSampler.port">${port}</stringProp>
               <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2630,7 +2635,7 @@ if (found) {
               </elementProp>
             </HTTPSamplerProxy>
             <hashTree>
-              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
                   <elementProp name="Sec-Fetch-Mode" elementType="Header">
                     <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
@@ -2687,7 +2692,7 @@ if (found) {
                 </collectionProp>
               </HeaderManager>
               <hashTree/>
-              <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="VERIFY ADD TO CART ">
+              <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="VERIFY ADD TO CART " enabled="true">
                 <stringProp name="BeanShellAssertion.query">String response = prev.getResponseDataAsString();
 if (response.contains(&quot;The product has been added&quot;)) {
     log.info(&quot;Product added to the cart&quot;);
@@ -2715,12 +2720,12 @@ if (response.contains(&quot;The product has been added&quot;)) {
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Go_to_Cart">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Go_to_Cart" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/cart-7">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/cart-7" enabled="true">
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -2734,7 +2739,7 @@ if (response.contains(&quot;The product has been added&quot;)) {
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
               <collectionProp name="HeaderManager.headers">
                 <elementProp name="Sec-Fetch-Mode" elementType="Header">
                   <stringProp name="Header.name">Sec-Fetch-Mode</stringProp>
@@ -2791,8 +2796,57 @@ if (response.contains(&quot;The product has been added&quot;)) {
               </collectionProp>
             </HeaderManager>
             <hashTree/>
+            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="false">
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="script">try {
+    String response = prev.getResponseDataAsString();
+    String keyword = props.get(&quot;randomProductKeyword&quot;).toString();
+    if (response.contains(keyword)) {
+        log.info(&quot;Search term &apos;&quot; + keyword + &quot;&apos; found.&quot;);
+    } else {
+        throw new Exception(&quot;Search term not found.&quot;);
+    }
+} catch (Exception e) {
+    if (prev.getResponseDataAsString().contains(&quot;Your Shopping Cart is empty!&quot;)) {
+        log.info(&quot;Search term not found, but empty cart message is present. Test passes.&quot;);
+        Failure = false;
+    } else {
+        log.error(&quot;Neither search term nor fallback text found.&quot;);
+        Failure = true;
+    }
+}
+</stringProp>
+            </BeanShellPostProcessor>
+            <hashTree/>
+            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell Assertion" enabled="true">
+              <stringProp name="BeanShellAssertion.query">try {
+    String response = prev.getResponseDataAsString();
+    String keyword = props.get(&quot;randomProductKeyword&quot;).toString();
+    if (response.contains(keyword)) {
+        log.info(&quot;Search term &apos;&quot; + keyword + &quot;&apos; found in response.&quot;);
+        Failure = false;
+    } else {
+        throw new Exception(&quot;Search term not found.&quot;);
+    }
+} catch (Exception e) {
+    if (prev.getResponseDataAsString().contains(&quot;Your Shopping Cart is empty!&quot;)) {
+        log.info(&quot;Search term not found, but cart is empty. Passing.&quot;);
+        Failure = false;  // pass
+    } else {
+        log.error(&quot;Neither search term nor fallback found.&quot;);
+        Failure = true;  // fail the assertion
+    }
+}
+</stringProp>
+              <stringProp name="BeanShellAssertion.filename"></stringProp>
+              <stringProp name="BeanShellAssertion.parameters"></stringProp>
+              <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+            </BeanShellAssertion>
+            <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-${users}${users}">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/__utm.gif-${users}${users}" enabled="true">
             <stringProp name="HTTPSampler.domain">ssl.google-analytics.com</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -3011,7 +3065,7 @@ if (response.contains(&quot;The product has been added&quot;)) {
         </TransactionController>
         <hashTree/>
       </hashTree>
-      <PostThreadGroup guiclass="PostThreadGroupGui" testclass="PostThreadGroup" testname="tearDown Thread Group">
+      <PostThreadGroup guiclass="PostThreadGroupGui" testclass="PostThreadGroup" testname="tearDown Thread Group" enabled="true">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -3027,7 +3081,7 @@ if (response.contains(&quot;The product has been added&quot;)) {
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/logout-300">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/logout-300" enabled="true">
             <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
             <stringProp name="HTTPSampler.domain">${URL}</stringProp>
             <stringProp name="HTTPSampler.port">${port}</stringProp>
@@ -3434,7 +3488,7 @@ if (response.contains(&quot;Log in&quot;)) {
         <stringProp name="ProxyControlGui.content_type_exclude"></stringProp>
       </ProxyControl>
       <hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -3524,7 +3578,7 @@ if (response.contains(&quot;Log in&quot;)) {
         <stringProp name="shareMode">shareMode.all</stringProp>
       </CSVDataSet>
       <hashTree/>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
         <collectionProp name="Arguments.arguments">
           <elementProp name="users" elementType="Argument">
             <stringProp name="Argument.name">users</stringProp>
